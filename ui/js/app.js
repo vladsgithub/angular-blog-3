@@ -1,6 +1,5 @@
 (function() {
-	var app = angular.module('angularApp', []),
-		scopeArticleController;
+	var app = angular.module('angularApp', []);
 
 	app.controller('ArticleController', function($scope){
 		scopeArticleController = $scope;
@@ -19,14 +18,14 @@
 		return {
 			restrict: 'E',
 			templateUrl: 'ui/template/popup.html',
-			controller: function(){
+			controller: function($scope){
 				this.article = {};
-				this.submit = function($scope){
+				this.submit = function(){
 					this.article.date = Date.now();
 					articles.push(this.article);
 					$('popup').modal('hide');
 					this.article = {};
-					scopeArticleController.formNewPost.$setPristine();
+					$scope.formNewPost.$setPristine();
 				};
 			},
 			controllerAs: 'newForm'
